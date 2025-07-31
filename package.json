@@ -10,7 +10,8 @@
   "main": "./build/index.js",
   "types": "./types/index.d.ts",
   "dependencies": {
-    "qin_case": "file:../qin_case"
+    "qin_case": "file:../qin_case",
+    "qin_soul": "file:../qin_soul"
   },
   "devDependencies": {
     "typescript": "^4",
