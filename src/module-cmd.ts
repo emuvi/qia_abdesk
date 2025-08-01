@@ -3,6 +3,7 @@ import { Module } from "./module";
 
 export class ModuleCMD extends Module {
     public constructor() {
-        super("CMD", new QinLabel("TESTE"));
+        super();
+        new QinLabel("CMD").install(this);
     }
 }

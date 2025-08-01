@@ -1,9 +1,7 @@
-import { QinBase, QinColumn, QinLabel } from "qin_case";
+import { QinBase, QinColumn, QinLabel, QinPanel } from "qin_case";
 
-export class Module extends QinColumn {
-    public constructor(title: string, body: QinBase) {
+export class Module extends QinPanel {
+    public constructor() {
         super();
-        this.addChild(new QinLabel(title));
-        this.addChild(body);
     }
 }

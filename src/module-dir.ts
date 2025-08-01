@@ -3,6 +3,7 @@ import { Module } from "./module";
 
 export class ModuleDIR extends Module {
     public constructor() {
-        super("DIR", new QinLabel("TESTE"));
+        super();
+        new QinLabel("DIR").install(this);
     }
 }
