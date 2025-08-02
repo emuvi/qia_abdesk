@@ -10,6 +10,7 @@ export class ModuleAPP extends Module {
     
     public constructor() {
         super();
+        this._bodyTabs.styleAsWhole();
         this._bodyTabs
             .addTab({title: "List", viewer: this._listPanel})
             .addTab({title: "Manifest", viewer: this._manifestPanel})
@@ -24,6 +25,8 @@ class ListPanel extends QinColumn {
 
     public constructor() {
         super();
+        this.styleAsWhole();
+        this._resultText.styleAsWhole();
         this._listButton.addActionMain(_ => this.actList()).install(this);
         this._resultText.install(this);
     }
