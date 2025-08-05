@@ -10,11 +10,10 @@ export class ModuleAPP extends Module {
     public constructor() {
         super();
         this._bodyTabs.styleAsWhole();
-        this._bodyTabs
-            .addTab({title: "List", viewer: this._listPanel})
-            .addTab({title: "Manifest", viewer: this._manifestPanel})
-            .addTab({title: "Asset", viewer: this._assetPanel})
-            .install(this);
+        this._bodyTabs.addTab({title: "List", viewer: this._listPanel});
+        this._bodyTabs.addTab({title: "Manifest", viewer: this._manifestPanel});
+        this._bodyTabs.addTab({title: "Asset", viewer: this._assetPanel});
+        this._bodyTabs.install(this);
     }
 }
 
@@ -43,7 +42,7 @@ class ListPanel extends QinColumn {
 class ManifestPanel extends QinColumn {
     private _actionLine = new QinLine();
     private _nameString = new QinString();
-    private _nameTitled = new QinTitled({title: "Name", items: [this._nameString]});
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _manifestButton = new QinButton({label: new QinLabel("Manifest")});
     private _resultText = new QinText();
 
@@ -67,9 +66,9 @@ class ManifestPanel extends QinColumn {
 
 class AssetPanel extends QinColumn {
     private _nameString = new QinString();
-    private _nameTitled = new QinTitled({title: "Name", items: [this._nameString]});
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _assetString = new QinString();
-    private _assetTitled = new QinTitled({title: "Asset", items: [this._assetString]});
+    private _assetTitled = new QinTitled({label: new QinLabel("Asset"), items: [this._assetString]});
     private _assetButton = new QinButton({label: new QinLabel("Asset")});
     private _actionLine = new QinLine();
     private _resultText = new QinText();
