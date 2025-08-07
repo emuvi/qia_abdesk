@@ -1,10 +1,21 @@
-import { QinFileView, QinLabel } from "qin_case";
+import { QinColumn, QinFileView, QinLabel, QinLine, QinString } from "qin_case";
 import { Module } from "./module";
 
 export class ModuleDIR extends Module {
-    private _view = new QinFileView();
+    private _bodyColumn = new QinColumn();
+    private _actionLine = new QinLine();
+    private _pathString = new QinString();
+    private _fileView = new QinFileView();
     public constructor() {
         super();
-        this._view.install(this);
+        this._fileView.addOnLoaded(folder => this._pathString.value = folder);
+        this._pathString.styleAsWhole();
+        this._fileView.styleAsWhole();
+        this._bodyColumn.styleAsWhole();
+        this._pathString.install(this._actionLine);
+        this._actionLine.install(this._bodyColumn);
+        this._fileView.install(this._bodyColumn);
+        this._bodyColumn.install(this);
+        this._fileView.load(".");
     }
 }
