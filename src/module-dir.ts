@@ -1,9 +1,10 @@
-import { QinLabel } from "qin_case";
+import { QinFileView, QinLabel } from "qin_case";
 import { Module } from "./module";
 
 export class ModuleDIR extends Module {
+    private _view = new QinFileView();
     public constructor() {
         super();
-        new QinLabel("DIR").install(this);
+        this._view.install(this);
     }
 }
