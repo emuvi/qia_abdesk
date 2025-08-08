@@ -5,7 +5,7 @@ export class ModuleDIR extends Module {
     private _bodyColumn = new QinColumn();
     private _actionLine = new QinLine();
     private _pathString = new QinString();
-    private _fileView = new QinFileView();
+    private _fileView = new QinFileView({canNavigate: true});
     public constructor() {
         super();
         this._fileView.addOnLoaded(folder => this._pathString.value = folder);
@@ -16,6 +16,6 @@ export class ModuleDIR extends Module {
         this._actionLine.install(this._bodyColumn);
         this._fileView.install(this._bodyColumn);
         this._bodyColumn.install(this);
-        this._fileView.load(".");
+        this._fileView.load("");
     }
 }
