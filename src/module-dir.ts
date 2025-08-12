@@ -1,4 +1,4 @@
-import { QinColumn, QinFileView, QinLabel, QinLine, QinString } from "qin_case";
+import { QinColumn, QinFileView, QinLine, QinString } from "qin_case";
 import { Module } from "./module";
 
 export class ModuleDIR extends Module {
