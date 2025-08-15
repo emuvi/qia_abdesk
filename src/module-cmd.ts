@@ -51,7 +51,7 @@ class RunPanel extends QinColumn {
     private _logLevelCombo = new QinCombo({items: [{title: "Error", value: "0"}, {title: "Warn", value: "1"}, {title: "Info", value: "2"}, {title: "Debug", value: "3"}, {title: "Trace", value: "4"}]});
     private _logLevelTitled = new QinTitled({label: new QinLabel("Log Level"), items: [this._logLevelCombo]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
-    private _resultText = new QinText();
+    private _resultText = new QinText({readOnly: true});
 
     public constructor() {
         super();
