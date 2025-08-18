@@ -107,30 +107,48 @@ class RegSee extends QinColumn {
         const valuedList = this.convertFieldsToValuedList(table);
         const insert = this.qinpel.talk.reg.aux
                 .newInsert(tableHead, valuedList, null);
-        this._resultText.value = JSON.stringify(insert, null, 2)
+        this._resultText.value = JSON.stringify(insert, null, 2);
     }
 
     private makeSelect() {
         const table = JSON.parse(this._resultText.value) as Table;
+        const tableHead = table.tableHead;
+        const fieldList = this.convertFieldsToTypedList(table);
+        const joinList = this.convertForeignToJoinList(table);
+        const filterList = this.convertFieldsToFilterList(table);
+        const orderList = this.convertPrimaryToOrderList(table);
+        const select = this.qinpel.talk.reg.aux
+                .newSelect(tableHead, fieldList, joinList, filterList, orderList, null, null);
+        this._resultText.value = JSON.stringify(select, null, 2);
     }
 
     private makeUpdate() {
         const table = JSON.parse(this._resultText.value) as Table;
         const tableHead = table.tableHead;
         const valuedList = this.convertFieldsToValuedList(table);
-        const filterList = this.convertKeyFieldsToFilterList(table);
+        const filterList = this.convertFieldsToFilterList(table);
         const update = this.qinpel.talk.reg.aux
                 .newUpdate(tableHead, valuedList, filterList, null);
-        this._resultText.value = JSON.stringify(update, null, 2)
+        this._resultText.value = JSON.stringify(update, null, 2);
     }
 
     private makeDelete() {
         const table = JSON.parse(this._resultText.value) as Table;
         const tableHead = table.tableHead;
-        const filterList = this.convertKeyFieldsToFilterList(table);
+        const filterList = this.convertFieldsToFilterList(table);
         const delety = this.qinpel.talk.reg.aux
                 .newDelete(tableHead, filterList);
-        this._resultText.value = JSON.stringify(delety, null, 2)
+        this._resultText.value = JSON.stringify(delety, null, 2);
+    }
+
+    private convertFieldsToTypedList(table: Table): Array<Typed> {
+        const result = new Array<Typed>();
+        for (const field of table.fieldList) {
+            const typed = this.qinpel.talk.reg.aux
+                    .newTyped(field.name, field.nature, null);
+            result.push(typed);
+        }
+        return result;
     }
 
     private convertFieldsToValuedList(table: Table): Array<Valued> {
@@ -145,7 +163,7 @@ class RegSee extends QinColumn {
         return result;
     }
 
-    private convertKeyFieldsToFilterList(table: Table): Array<Filter> {
+    private convertFieldsToFilterList(table: Table): Array<Filter> {
         const result = new Array<Filter>();
         for (const field of table.fieldList) {
             if (field.keyPrimary) {
@@ -154,6 +172,36 @@ class RegSee extends QinColumn {
                 const filter = this.qinpel.talk.reg.aux
                        .newFilter(FilterSeems.IS, FilterLikes.EQUALS, valued, null, FilterTies.AND);
                 result.push(filter);
+            }
+        }
+        return result;
+    }
+
+    private convertForeignToJoinList(table: Table): Array<Join> {
+        const result = new Array<Join>();
+        for (const foreign of table.keyForeignList) {
+            const filterList = new Array<Filter>;
+            for (const match of foreign.matchList) {
+                const linked = this.qinpel.talk.reg.aux
+                        .newLinked(match.inColumn, match.outColumn);
+                const filter = this.qinpel.talk.reg.aux
+                        .newFilter(FilterSeems.IS, FilterLikes.EQUALS, null, linked, FilterTies.AND);
+                filterList.push(filter);
+            }
+            const join = this.qinpel.talk.reg.aux
+                    .newJoin(foreign.outTableHead, null, filterList, JoinTies.LEFT);
+            result.push(join);
+        }
+        return result;
+    }
+
+    private convertPrimaryToOrderList(table: Table): Array<Order> {
+        const result = new Array<Order>();
+        for (const primary of table.keyPrimaryList) {
+            for (const primaryColumn of primary.columnList) {
+                const order = this.qinpel.talk.reg.aux
+                        .newOrder(primaryColumn.name, false);
+                result.push(order);
             }
         }
         return result;
