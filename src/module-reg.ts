@@ -1,7 +1,7 @@
 import { QinBoolean, QinButton, QinColumn, QinCombo, QinLabel, QinLine, QinNumeric, QinString, QinTabs, QinText, QinTitled } from "qin_case";
 import { Module } from "./module";
 import { JoinTies, FilterSeems, FilterLikes, FilterTies, Nature } from "qin_soul"
-import { Delete, Filter, Insert, Join, Linked, Order, Select, TableHead, ToGetID, Typed, Update, Valued } from "../../qin_soul/types/qin-type";
+import { Delete, Filter, Insert, Join, Linked, Order, Select, Table, TableHead, ToGetID, Typed, Update, Valued } from "../../qin_soul/types/qin-type";
 
 export class ModuleREG extends Module {
     private _bodyTabs = new QinTabs();
@@ -30,7 +30,7 @@ export class ModuleREG extends Module {
 }
 
 class RegTop extends QinColumn {
-    private _actionLine = new QinLine();
+    private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
@@ -41,9 +41,9 @@ class RegTop extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._runButton.addActionMain(_ => this.actRun());
-        this._baseTitled.install(this._actionLine);
-        this._runButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._baseTitled.install(this._actLine);
+        this._runButton.install(this._actLine);
+        this._actLine.install(this);
         this._resultText.install(this);
     }
 
@@ -56,12 +56,18 @@ class RegTop extends QinColumn {
 }
 
 class RegSee extends QinColumn {
-    private _actionLine = new QinLine();
+    private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
+    private _makeLine = new QinLine();
+    private _makeLabel = new QinLabel("Make:");
+    private _insertButton = new QinButton({label: new QinLabel("Insert")});
+    private _selectButton = new QinButton({label: new QinLabel("Select")});
+    private _updateButton = new QinButton({label: new QinLabel("Update")});
+    private _deleteButton = new QinButton({label: new QinLabel("Delete")});
     private _resultText = new QinText({readOnly: true});
 
     public constructor() {
@@ -69,10 +75,20 @@ class RegSee extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._runButton.addActionMain(_ => this.actRun());
-        this._baseTitled.install(this._actionLine);
-        this._tableHeadTitled.install(this._actionLine);
-        this._runButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._insertButton.addActionMain(_ => this.makeInsert());
+        this._selectButton.addActionMain(_ => this.makeSelect());
+        this._updateButton.addActionMain(_ => this.makeUpdate());
+        this._deleteButton.addActionMain(_ => this.makeDelete());
+        this._baseTitled.install(this._actLine);
+        this._tableHeadTitled.install(this._actLine);
+        this._runButton.install(this._actLine);
+        this._makeLabel.install(this._makeLine);
+        this._insertButton.install(this._makeLine);
+        this._selectButton.install(this._makeLine);
+        this._updateButton.install(this._makeLine);
+        this._deleteButton.install(this._makeLine);
+        this._actLine.install(this);
+        this._makeLine.install(this);
         this._resultText.install(this);
     }
 
@@ -84,10 +100,41 @@ class RegSee extends QinColumn {
                 .then((table) => this._resultText.value = JSON.stringify(table, null, 2))
                 .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000008)"))
     }
+
+    private makeInsert() {
+        const table = JSON.parse(this._resultText.value) as Table;
+        const tableHead = table.tableHead;
+        const valuedList = this.convertFieldsToValuedList(table);
+        const insert = this.qinpel.talk.reg.aux
+                .newInsert(tableHead, valuedList, null);
+        this._resultText.value = JSON.stringify(insert, null, 2)
+    }
+
+    private makeSelect() {
+        const table = JSON.parse(this._resultText.value) as Table;
+    }
+
+    private makeUpdate() {
+        const table = JSON.parse(this._resultText.value) as Table;
+    }
+
+    private makeDelete() {
+        const table = JSON.parse(this._resultText.value) as Table;
+    }
+
+    private convertFieldsToValuedList(table: Table): Array<Valued> {
+        const result = new Array<Valued>();
+        for (const field of table.fieldList) {
+            const valued = this.qinpel.talk.reg.aux
+                    .newValued(field.name, field.nature, null);
+            result.push(valued);
+        }
+        return result;
+    }
 }
 
 class RegCan extends QinColumn {
-    private _actionLine = new QinLine();
+    private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _tableHeadText = new QinText();
@@ -100,10 +147,10 @@ class RegCan extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._runButton.addActionMain(_ => this.actRun());
-        this._baseTitled.install(this._actionLine);
-        this._tableHeadTitled.install(this._actionLine);
-        this._runButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._baseTitled.install(this._actLine);
+        this._tableHeadTitled.install(this._actLine);
+        this._runButton.install(this._actLine);
+        this._actLine.install(this);
         this._resultText.install(this);
     }
 
@@ -118,7 +165,7 @@ class RegCan extends QinColumn {
 }
 
 class RegNew extends QinColumn {
-    private _actionLine = new QinLine();
+    private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _insertText = new QinText();
@@ -131,10 +178,10 @@ class RegNew extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._runButton.addActionMain(_ => this.actRun());
-        this._baseTitled.install(this._actionLine);
-        this._insertTitled.install(this._actionLine);
-        this._runButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._baseTitled.install(this._actLine);
+        this._insertTitled.install(this._actLine);
+        this._runButton.install(this._actLine);
+        this._actLine.install(this);
         this._resultText.install(this);
     }
 
@@ -149,7 +196,7 @@ class RegNew extends QinColumn {
 }
 
 class RegAsk extends QinColumn {
-    private _actionLine = new QinLine();
+    private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _selectText = new QinText();
@@ -162,10 +209,10 @@ class RegAsk extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._runButton.addActionMain(_ => this.actRun());
-        this._baseTitled.install(this._actionLine);
-        this._selectTitled.install(this._actionLine);
-        this._runButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._baseTitled.install(this._actLine);
+        this._selectTitled.install(this._actLine);
+        this._runButton.install(this._actLine);
+        this._actLine.install(this);
         this._resultText.install(this);
     }
 
@@ -180,7 +227,7 @@ class RegAsk extends QinColumn {
 }
 
 class RegSet extends QinColumn {
-    private _actionLine = new QinLine();
+    private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _updateText = new QinText();
@@ -193,10 +240,10 @@ class RegSet extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._runButton.addActionMain(_ => this.actRun());
-        this._baseTitled.install(this._actionLine);
-        this._updateTitled.install(this._actionLine);
-        this._runButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._baseTitled.install(this._actLine);
+        this._updateTitled.install(this._actLine);
+        this._runButton.install(this._actLine);
+        this._actLine.install(this);
         this._resultText.install(this);
     }
 
@@ -211,7 +258,7 @@ class RegSet extends QinColumn {
 }
 
 class RegDel extends QinColumn {
-    private _actionLine = new QinLine();
+    private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _deleteText = new QinText();
@@ -224,10 +271,10 @@ class RegDel extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._runButton.addActionMain(_ => this.actRun());
-        this._baseTitled.install(this._actionLine);
-        this._deleteTitled.install(this._actionLine);
-        this._runButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._baseTitled.install(this._actLine);
+        this._deleteTitled.install(this._actLine);
+        this._runButton.install(this._actLine);
+        this._actLine.install(this);
         this._resultText.install(this);
     }
 
@@ -279,7 +326,7 @@ class RegAux extends QinColumn {
 }
 
 class RegAuxTableHead extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _catalogString = new QinString();
     private _catalogTitled = new QinTitled({label: new QinLabel("Catalog"), items: [this._catalogString]});
     private _schemaString = new QinString();
@@ -296,12 +343,12 @@ class RegAuxTableHead extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._catalogTitled.install(this._actionLine);
-        this._schemaTitled.install(this._actionLine);
-        this._nameTitled.install(this._actionLine);
-        this._aliasTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._catalogTitled.install(this._newLine);
+        this._schemaTitled.install(this._newLine);
+        this._nameTitled.install(this._newLine);
+        this._aliasTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -318,7 +365,7 @@ class RegAuxTableHead extends QinColumn {
 }
 
 class RegAuxRegistry extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _tableHeadText = new QinText();
@@ -331,10 +378,10 @@ class RegAuxRegistry extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._baseTitled.install(this._actionLine);
-        this._tableHeadTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._baseTitled.install(this._newLine);
+        this._tableHeadTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -347,7 +394,7 @@ class RegAuxRegistry extends QinColumn {
 }
 
 class RegAuxInsert extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _valuedListText = new QinText();
@@ -362,11 +409,11 @@ class RegAuxInsert extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._tableHeadTitled.install(this._actionLine);
-        this._valuedListTitled.install(this._actionLine);
-        this._toGetIDTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._tableHeadTitled.install(this._newLine);
+        this._valuedListTitled.install(this._newLine);
+        this._toGetIDTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -381,7 +428,7 @@ class RegAuxInsert extends QinColumn {
 }
 
 class RegAuxSelect extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _fieldListText = new QinText();
@@ -404,15 +451,15 @@ class RegAuxSelect extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._tableHeadTitled.install(this._actionLine);
-        this._fieldListTitled.install(this._actionLine);
-        this._joinListTitled.install(this._actionLine);
-        this._filterListTitled.install(this._actionLine);
-        this._orderListTitled.install(this._actionLine);
-        this._offsetTitled.install(this._actionLine);
-        this._limitTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._tableHeadTitled.install(this._newLine);
+        this._fieldListTitled.install(this._newLine);
+        this._joinListTitled.install(this._newLine);
+        this._filterListTitled.install(this._newLine);
+        this._orderListTitled.install(this._newLine);
+        this._offsetTitled.install(this._newLine);
+        this._limitTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -431,7 +478,7 @@ class RegAuxSelect extends QinColumn {
 }
 
 class RegAuxUpdate extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _valuedListText = new QinText();
@@ -448,12 +495,12 @@ class RegAuxUpdate extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._tableHeadTitled.install(this._actionLine);
-        this._valuedListTitled.install(this._actionLine);
-        this._filterListTitled.install(this._actionLine);
-        this._limitTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._tableHeadTitled.install(this._newLine);
+        this._valuedListTitled.install(this._newLine);
+        this._filterListTitled.install(this._newLine);
+        this._limitTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -469,7 +516,7 @@ class RegAuxUpdate extends QinColumn {
 }
 
 class RegAuxDelete extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _filterListText = new QinText();
@@ -482,10 +529,10 @@ class RegAuxDelete extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._tableHeadTitled.install(this._actionLine);
-        this._filterListTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._tableHeadTitled.install(this._newLine);
+        this._filterListTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -499,7 +546,7 @@ class RegAuxDelete extends QinColumn {
 }
 
 class RegAuxToGetID extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _filterText = new QinText();
@@ -512,10 +559,10 @@ class RegAuxToGetID extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._nameTitled.install(this._actionLine);
-        this._filterTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._nameTitled.install(this._newLine);
+        this._filterTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -529,7 +576,7 @@ class RegAuxToGetID extends QinColumn {
 }
 
 class RegAuxJoin extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _aliasString = new QinString();
@@ -546,12 +593,12 @@ class RegAuxJoin extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._tableHeadTitled.install(this._actionLine);
-        this._aliasTitled.install(this._actionLine);
-        this._filterListTitled.install(this._actionLine);
-        this._tiesTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._tableHeadTitled.install(this._newLine);
+        this._aliasTitled.install(this._newLine);
+        this._filterListTitled.install(this._newLine);
+        this._tiesTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -567,7 +614,7 @@ class RegAuxJoin extends QinColumn {
 }
 
 class RegAuxFilter extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _seemsCombo = new QinCombo({ofEnum: FilterSeems});
     private _seemsTitled = new QinTitled({label: new QinLabel("Seems"), items: [this._seemsCombo]});
     private _likesCombo = new QinCombo({ofEnum: FilterLikes});
@@ -586,13 +633,13 @@ class RegAuxFilter extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._seemsTitled.install(this._actionLine);
-        this._likesTitled.install(this._actionLine);
-        this._valuedTitled.install(this._actionLine);
-        this._linkedTitled.install(this._actionLine);
-        this._tiesTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._seemsTitled.install(this._newLine);
+        this._likesTitled.install(this._newLine);
+        this._valuedTitled.install(this._newLine);
+        this._linkedTitled.install(this._newLine);
+        this._tiesTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -609,7 +656,7 @@ class RegAuxFilter extends QinColumn {
 }
 
 class RegAuxLinked extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _uponString = new QinString();
@@ -622,10 +669,10 @@ class RegAuxLinked extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._nameTitled.install(this._actionLine);
-        this._uponTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._nameTitled.install(this._newLine);
+        this._uponTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -639,7 +686,7 @@ class RegAuxLinked extends QinColumn {
 }
 
 class RegAuxOrder extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _descBoolean = new QinBoolean();
@@ -652,10 +699,10 @@ class RegAuxOrder extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._nameTitled.install(this._actionLine);
-        this._descTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._nameTitled.install(this._newLine);
+        this._descTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -669,7 +716,7 @@ class RegAuxOrder extends QinColumn {
 }
 
 class RegAuxValued extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _typeCombo = new QinCombo({ofEnum: Nature});
@@ -684,11 +731,11 @@ class RegAuxValued extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._nameTitled.install(this._actionLine);
-        this._typeTitled.install(this._actionLine);
-        this._dataTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._nameTitled.install(this._newLine);
+        this._typeTitled.install(this._newLine);
+        this._dataTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
@@ -703,7 +750,7 @@ class RegAuxValued extends QinColumn {
 }
 
 class RegAuxTyped extends QinColumn {
-    private _actionLine = new QinLine();
+    private _newLine = new QinLine();
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _typeCombo = new QinCombo({ofEnum: Nature});
@@ -718,11 +765,11 @@ class RegAuxTyped extends QinColumn {
         this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._newButton.addActionMain(_ => this.actNew());
-        this._nameTitled.install(this._actionLine);
-        this._typeTitled.install(this._actionLine);
-        this._aliasTitled.install(this._actionLine);
-        this._newButton.install(this._actionLine);
-        this._actionLine.install(this);
+        this._nameTitled.install(this._newLine);
+        this._typeTitled.install(this._newLine);
+        this._aliasTitled.install(this._newLine);
+        this._newButton.install(this._newLine);
+        this._newLine.install(this);
         this._resultText.install(this);
     }
 
