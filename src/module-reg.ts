@@ -116,6 +116,12 @@ class RegSee extends QinColumn {
 
     private makeUpdate() {
         const table = JSON.parse(this._resultText.value) as Table;
+        const tableHead = table.tableHead;
+        const valuedList = this.convertFieldsToValuedList(table);
+        const filterList = this.convertKeyFieldsToFilterList(table);
+        const update = this.qinpel.talk.reg.aux
+                .newUpdate(tableHead, valuedList, filterList, null);
+        this._resultText.value = JSON.stringify(update, null, 2)
     }
 
     private makeDelete() {
@@ -130,9 +136,11 @@ class RegSee extends QinColumn {
     private convertFieldsToValuedList(table: Table): Array<Valued> {
         const result = new Array<Valued>();
         for (const field of table.fieldList) {
-            const valued = this.qinpel.talk.reg.aux
-                    .newValued(field.name, field.nature, null);
-            result.push(valued);
+            if (!field.keyPrimary) {
+                const valued = this.qinpel.talk.reg.aux
+                        .newValued(field.name, field.nature, null);
+                result.push(valued);
+            }
         }
         return result;
     }
