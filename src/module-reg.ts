@@ -120,6 +120,11 @@ class RegSee extends QinColumn {
 
     private makeDelete() {
         const table = JSON.parse(this._resultText.value) as Table;
+        const tableHead = table.tableHead;
+        const filterList = this.convertKeyFieldsToFilterList(table);
+        const delety = this.qinpel.talk.reg.aux
+                .newDelete(tableHead, filterList);
+        this._resultText.value = JSON.stringify(delety, null, 2)
     }
 
     private convertFieldsToValuedList(table: Table): Array<Valued> {
@@ -128,6 +133,20 @@ class RegSee extends QinColumn {
             const valued = this.qinpel.talk.reg.aux
                     .newValued(field.name, field.nature, null);
             result.push(valued);
+        }
+        return result;
+    }
+
+    private convertKeyFieldsToFilterList(table: Table): Array<Filter> {
+        const result = new Array<Filter>();
+        for (const field of table.fieldList) {
+            if (field.keyPrimary) {
+                const valued = this.qinpel.talk.reg.aux
+                        .newValued(field.name, field.nature, null);
+                const filter = this.qinpel.talk.reg.aux
+                       .newFilter(FilterSeems.IS, FilterLikes.EQUALS, valued, null, FilterTies.AND);
+                result.push(filter);
+            }
         }
         return result;
     }
