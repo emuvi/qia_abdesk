@@ -20,6 +20,7 @@ class BasicUTL extends QinColumn {
 
     public constructor() {
         super();
+        this.styleAsWhole();
         this._resultText.styleAsWhole();
         this._pingButton.addActionMain(_ => this.actPing());
         this._pingButton.install(this._actionLine);
