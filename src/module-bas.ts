@@ -1,4 +1,4 @@
-import { QinButton, QinColumn, QinLabel, QinLine, QinString, QinTabs, QinText, QinTitled } from "qin_case";
+import { QinButton, QinColumn, QinLabel, QinLine, QinText } from "qin_case";
 import { Module } from "./module";
 
 export class ModuleBAS extends Module {
@@ -22,6 +22,6 @@ export class ModuleBAS extends Module {
     private actList() {
         this.qinpel.talk.bas.list()
             .then((res) => this._resultText.value = res.join("\n"))
-            .catch((err) => this.qinpel.frame.statusError(err, "{qia_abdesk}(ErrCode-000001)"))
+            .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000001)"))
     }
 }

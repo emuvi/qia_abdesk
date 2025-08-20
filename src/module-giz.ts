@@ -34,7 +34,7 @@ class ListPanel extends QinColumn {
     private actList() {
         this.qinpel.talk.giz.list()
             .then((res) => this._resultText.value = res.join("\n"))
-            .catch((err) => this.qinpel.frame.statusError(err, "{qia_abdesk}(ErrCode-000005)"))
+            .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000005)"))
     }
 }
 
@@ -82,6 +82,6 @@ class RunPanel extends QinColumn {
         const execute = this.getExecute();
         this.qinpel.talk.giz.run(execute)
             .then((token) => this._resultText.appendLine(token + "\n" + JSON.stringify(execute)))
-            .catch((err) => this.qinpel.frame.statusError(err, "{qia_abdesk}(ErrCode-000006)"))
+            .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000006)"))
     }
 }

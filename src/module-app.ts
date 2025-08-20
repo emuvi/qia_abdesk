@@ -35,7 +35,7 @@ class ListPanel extends QinColumn {
     private actList() {
         this.qinpel.talk.app.list()
             .then((res) => this._resultText.value = res.join("\n"))
-            .catch((err) => this.qinpel.frame.statusError(err, "{qia_abdesk}(ErrCode-000001)"))
+            .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000001)"))
     }
 }
 
@@ -60,7 +60,7 @@ class ManifestPanel extends QinColumn {
     private actManifest() {
         this.qinpel.talk.app.manifest(this._nameString.value)
             .then((res) => this._resultText.value = JSON.stringify(res))
-            .catch((err) => this.qinpel.frame.statusError(err, "{qia_abdesk}(ErrCode-000002)"))
+            .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000002)"))
     }
 }
 
@@ -88,6 +88,6 @@ class AssetPanel extends QinColumn {
     private actAsset() {
         this.qinpel.talk.app.asset<string>(this._nameString.value, this._assetString.value)
             .then((res) => this._resultText.value = res)
-            .catch((err) => this.qinpel.frame.statusError(err, "{qia_abdesk}(ErrCode-000002)"))
+            .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000002)"))
     }
 }
