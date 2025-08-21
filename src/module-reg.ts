@@ -5,31 +5,31 @@ import { Delete, Filter, Insert, Join, Linked, Order, Select, Table, TableHead, 
 
 export class ModuleREG extends Module {
     private _bodyTabs = new QinTabs();
-    private _regTop = new RegTop();
-    private _regSee = new RegSee();
-    private _regCan = new RegCan();
-    private _regNew = new RegNew();
-    private _regAsk = new RegAsk();
-    private _regSet = new RegSet();
-    private _regDel = new RegDel();
-    private _regAux = new RegAux();
+    private _topREG = new TopREG();
+    private _seeREG = new SeeREG();
+    private _canREG = new CanREG();
+    private _newREG = new NewREG();
+    private _askREG = new AskREG();
+    private _setREG = new SetREG();
+    private _delREG = new DelREG();
+    private _auxREG = new AuxREG();
 
     public constructor() {
         super();
         this._bodyTabs.styleAsWhole();
-        this._bodyTabs.addTab({title: "Top", viewer: this._regTop});
-        this._bodyTabs.addTab({title: "See", viewer: this._regSee});
-        this._bodyTabs.addTab({title: "Can", viewer: this._regCan});
-        this._bodyTabs.addTab({title: "New", viewer: this._regNew});
-        this._bodyTabs.addTab({title: "Ask", viewer: this._regAsk});
-        this._bodyTabs.addTab({title: "Set", viewer: this._regSet});
-        this._bodyTabs.addTab({title: "Del", viewer: this._regDel});
-        this._bodyTabs.addTab({title: "Aux", viewer: this._regAux});
+        this._bodyTabs.addTab({title: "Top", viewer: this._topREG});
+        this._bodyTabs.addTab({title: "See", viewer: this._seeREG});
+        this._bodyTabs.addTab({title: "Can", viewer: this._canREG});
+        this._bodyTabs.addTab({title: "New", viewer: this._newREG});
+        this._bodyTabs.addTab({title: "Ask", viewer: this._askREG});
+        this._bodyTabs.addTab({title: "Set", viewer: this._setREG});
+        this._bodyTabs.addTab({title: "Del", viewer: this._delREG});
+        this._bodyTabs.addTab({title: "Aux", viewer: this._auxREG});
         this._bodyTabs.install(this);
     }
 }
 
-class RegTop extends QinColumn {
+class TopREG extends QinColumn {
     private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
@@ -55,7 +55,7 @@ class RegTop extends QinColumn {
     }
 }
 
-class RegSee extends QinColumn {
+class SeeREG extends QinColumn {
     private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
@@ -208,7 +208,7 @@ class RegSee extends QinColumn {
     }
 }
 
-class RegCan extends QinColumn {
+class CanREG extends QinColumn {
     private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
@@ -239,7 +239,7 @@ class RegCan extends QinColumn {
     }
 }
 
-class RegNew extends QinColumn {
+class NewREG extends QinColumn {
     private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
@@ -270,7 +270,7 @@ class RegNew extends QinColumn {
     }
 }
 
-class RegAsk extends QinColumn {
+class AskREG extends QinColumn {
     private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
@@ -301,7 +301,7 @@ class RegAsk extends QinColumn {
     }
 }
 
-class RegSet extends QinColumn {
+class SetREG extends QinColumn {
     private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
@@ -332,7 +332,7 @@ class RegSet extends QinColumn {
     }
 }
 
-class RegDel extends QinColumn {
+class DelREG extends QinColumn {
     private _actLine = new QinLine();
     private _baseString = new QinString();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
@@ -363,7 +363,7 @@ class RegDel extends QinColumn {
     }
 }
 
-class RegAux extends QinColumn {
+class AuxREG extends QinColumn {
     private _bodyTabs = new QinTabs();
     private _tableHeadAux = new RegAuxTableHead();
     private _registryAux = new RegAuxRegistry();

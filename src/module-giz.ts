@@ -4,8 +4,8 @@ import { Execute } from "../../qin_soul/types/qin-type";
 
 export class ModuleGIZ extends Module {
     private _bodyTabs = new QinTabs();
-    private _listPanel = new ListPanel();
-    private _runPanel = new RunPanel();
+    private _listPanel = new ListGIZ();
+    private _runPanel = new RunGIZ();
 
     public constructor() {
         super();
@@ -16,7 +16,7 @@ export class ModuleGIZ extends Module {
     }
 }
 
-class ListPanel extends QinColumn {
+class ListGIZ extends QinColumn {
     private _actionLine = new QinLine();
     private _listButton = new QinButton({label: new QinLabel("List")});
     private _resultText = new QinText();
@@ -38,7 +38,7 @@ class ListPanel extends QinColumn {
     }
 }
 
-class RunPanel extends QinColumn {
+class RunGIZ extends QinColumn {
     private _actionLine = new QinLine();
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});

@@ -4,19 +4,19 @@ import { Execute } from "../../qin_soul/types/qin-type";
 
 export class ModuleCMD extends Module {
     private _bodyTabs = new QinTabs();
-    private _listPanel = new ListPanel();
-    private _runPanel = new RunPanel();
+    private _listCMD = new ListCMD();
+    private _runCMD = new RunCMD();
 
     public constructor() {
         super();
         this._bodyTabs.styleAsWhole();
-        this._bodyTabs.addTab({title: "List", viewer: this._listPanel});
-        this._bodyTabs.addTab({title: "Run", viewer: this._runPanel});
+        this._bodyTabs.addTab({title: "List", viewer: this._listCMD});
+        this._bodyTabs.addTab({title: "Run", viewer: this._runCMD});
         this._bodyTabs.install(this);
     }
 }
 
-class ListPanel extends QinColumn {
+class ListCMD extends QinColumn {
     private _actionLine = new QinLine();
     private _listButton = new QinButton({label: new QinLabel("List")});
     private _resultText = new QinText();
@@ -38,7 +38,7 @@ class ListPanel extends QinColumn {
     }
 }
 
-class RunPanel extends QinColumn {
+class RunCMD extends QinColumn {
     private _actionLine = new QinLine();
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});

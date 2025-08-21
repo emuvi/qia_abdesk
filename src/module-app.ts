@@ -3,21 +3,21 @@ import { Module } from "./module";
 
 export class ModuleAPP extends Module {
     private _bodyTabs = new QinTabs();
-    private _listPanel = new ListPanel();
-    private _manifestPanel = new ManifestPanel();
-    private _assetPanel = new AssetPanel();
+    private _listAPP = new ListAPP();
+    private _manifestAPP = new ManifestAPP();
+    private _assetAPP = new AssetAPP();
     
     public constructor() {
         super();
         this._bodyTabs.styleAsWhole();
-        this._bodyTabs.addTab({title: "List", viewer: this._listPanel});
-        this._bodyTabs.addTab({title: "Manifest", viewer: this._manifestPanel});
-        this._bodyTabs.addTab({title: "Asset", viewer: this._assetPanel});
+        this._bodyTabs.addTab({title: "List", viewer: this._listAPP});
+        this._bodyTabs.addTab({title: "Manifest", viewer: this._manifestAPP});
+        this._bodyTabs.addTab({title: "Asset", viewer: this._assetAPP});
         this._bodyTabs.install(this);
     }
 }
 
-class ListPanel extends QinColumn {
+class ListAPP extends QinColumn {
     private _actionLine = new QinLine();
     private _listButton = new QinButton({label: new QinLabel("List")});
     private _resultText = new QinText();
@@ -39,7 +39,7 @@ class ListPanel extends QinColumn {
     }
 }
 
-class ManifestPanel extends QinColumn {
+class ManifestAPP extends QinColumn {
     private _actionLine = new QinLine();
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
@@ -64,7 +64,7 @@ class ManifestPanel extends QinColumn {
     }
 }
 
-class AssetPanel extends QinColumn {
+class AssetAPP extends QinColumn {
     private _nameString = new QinString();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _assetString = new QinString();
