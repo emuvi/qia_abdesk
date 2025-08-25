@@ -23,8 +23,8 @@ class BasicUTL extends QinColumn {
     private _pingButton = new QinButton({label: new QinLabel("Ping")});
     private _langButton = new QinButton({label: new QinLabel("Lang")});
     private _configLine = new QinLine();
-    private _configString = new QinChars();
-    private _configTitled = new QinTitled({label: new QinLabel("Config"), items: [this._configString]});
+    private _configChars = new QinChars();
+    private _configTitled = new QinTitled({label: new QinLabel("Config"), items: [this._configChars]});
     private _configButton = new QinButton({label: new QinLabel("Get")});
     private _resultText = new QinText();
 
@@ -60,7 +60,7 @@ class BasicUTL extends QinColumn {
 
     private actConfig() {
         this.qinpel.talk.utl
-            .getConfig(this._configString.value)
+            .getConfig(this._configChars.value)
             .then((res) => this._resultText.value = res)
             .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000019)"))
     }
@@ -68,8 +68,8 @@ class BasicUTL extends QinColumn {
 
 class EnterUTL extends QinColumn {
     private _enterLine = new QinLine();
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
     private _passPassword = new QinPassword();
     private _passTitled = new QinTitled({label: new QinLabel("Pass"), items: [this._passPassword]});
     private _enterButton = new QinButton({label: new QinLabel("Enter")});
@@ -97,7 +97,7 @@ class EnterUTL extends QinColumn {
 
     private actEnter() {
         const tryAuth: TryAuth = {
-            name: this._nameString.value,
+            name: this._nameChars.value,
             pass: this._passPassword.value
         }
         this.qinpel.talk.utl
@@ -123,8 +123,8 @@ class EnterUTL extends QinColumn {
 
 class IssuedUTL extends QinColumn {
     private _questionLine = new QinLine();
-    private _tokenString = new QinChars();
-    private _tokenTitled = new QinTitled({label: new QinLabel("Token"), items: [this._tokenString]});
+    private _tokenChars = new QinChars();
+    private _tokenTitled = new QinTitled({label: new QinLabel("Token"), items: [this._tokenChars]});
     private _createdAtBoolean = new QinBool();
     private _createdAtTitled = new QinTitled({label: new QinLabel("Created At"), items: [this._createdAtBoolean]});
     private _outLinesBoolean = new QinBool();
@@ -183,7 +183,7 @@ class IssuedUTL extends QinColumn {
 
     private actAsk() {
         const question: IssuedQuestion = {
-            token: this._tokenString.value,
+            token: this._tokenChars.value,
             askCreatedAt: this._createdAtBoolean.value,
             askOutLines: this._outLinesBoolean.value,
             askOutLinesFrom: this._outLinesFromNumber.value,

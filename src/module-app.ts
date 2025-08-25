@@ -41,8 +41,8 @@ class ListAPP extends QinColumn {
 
 class ManifestAPP extends QinColumn {
     private _actionLine = new QinLine();
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
     private _manifestButton = new QinButton({label: new QinLabel("Manifest")});
     private _resultText = new QinText();
 
@@ -58,17 +58,17 @@ class ManifestAPP extends QinColumn {
     }
 
     private actManifest() {
-        this.qinpel.talk.app.manifest(this._nameString.value)
+        this.qinpel.talk.app.manifest(this._nameChars.value)
             .then((res) => this._resultText.value = JSON.stringify(res))
             .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000002)"))
     }
 }
 
 class AssetAPP extends QinColumn {
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
-    private _assetString = new QinChars();
-    private _assetTitled = new QinTitled({label: new QinLabel("Asset"), items: [this._assetString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
+    private _assetChars = new QinChars();
+    private _assetTitled = new QinTitled({label: new QinLabel("Asset"), items: [this._assetChars]});
     private _assetButton = new QinButton({label: new QinLabel("Asset")});
     private _actionLine = new QinLine();
     private _resultText = new QinText();
@@ -86,7 +86,7 @@ class AssetAPP extends QinColumn {
     }
 
     private actAsset() {
-        this.qinpel.talk.app.asset<string>(this._nameString.value, this._assetString.value)
+        this.qinpel.talk.app.asset<string>(this._nameChars.value, this._assetChars.value)
             .then((res) => this._resultText.value = res)
             .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000002)"))
     }

@@ -31,8 +31,8 @@ export class ModuleREG extends Module {
 
 class TopREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinChars();
-    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
+    private _baseChars = new QinChars();
+    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseChars]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
     private _resultText = new QinText({readOnly: true});
 
@@ -48,7 +48,7 @@ class TopREG extends QinColumn {
     }
 
     private actRun() {
-        const base = this._baseString.value;
+        const base = this._baseChars.value;
         this.qinpel.talk.reg.top(base)
                 .then((heads) => this._resultText.value = JSON.stringify(heads, null, 2))
                 .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000007)"))
@@ -57,8 +57,8 @@ class TopREG extends QinColumn {
 
 class SeeREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinChars();
-    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
+    private _baseChars = new QinChars();
+    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseChars]});
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
@@ -93,7 +93,7 @@ class SeeREG extends QinColumn {
     }
 
     private actRun() {
-        const base = this._baseString.value;
+        const base = this._baseChars.value;
         const tableHead = JSON.parse(this._tableHeadText.value) as TableHead;
         const registry = this.qinpel.talk.reg.aux.newRegistry(base, tableHead);
         this.qinpel.talk.reg.see(registry)
@@ -210,8 +210,8 @@ class SeeREG extends QinColumn {
 
 class CanREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinChars();
-    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
+    private _baseChars = new QinChars();
+    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseChars]});
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
@@ -230,7 +230,7 @@ class CanREG extends QinColumn {
     }
 
     private actRun() {
-        const base = this._baseString.value;
+        const base = this._baseChars.value;
         const tableHead = JSON.parse(this._tableHeadText.value) as TableHead;
         const registry = this.qinpel.talk.reg.aux.newRegistry(base, tableHead);
         this.qinpel.talk.reg.can(registry)
@@ -241,8 +241,8 @@ class CanREG extends QinColumn {
 
 class NewREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinChars();
-    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
+    private _baseChars = new QinChars();
+    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseChars]});
     private _insertText = new QinText();
     private _insertTitled = new QinTitled({label: new QinLabel("Insert"), items: [this._insertText]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
@@ -261,7 +261,7 @@ class NewREG extends QinColumn {
     }
 
     private actRun() {
-        const base = this._baseString.value;
+        const base = this._baseChars.value;
         const insert = JSON.parse(this._insertText.value) as Insert;
         const toInsert = this.qinpel.talk.reg.aux.newToInsert(base, insert);
         this.qinpel.talk.reg.new(toInsert)
@@ -272,8 +272,8 @@ class NewREG extends QinColumn {
 
 class AskREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinChars();
-    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
+    private _baseChars = new QinChars();
+    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseChars]});
     private _selectText = new QinText();
     private _selectTitled = new QinTitled({label: new QinLabel("Select"), items: [this._selectText]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
@@ -292,7 +292,7 @@ class AskREG extends QinColumn {
     }
 
     private actRun() {
-        const base = this._baseString.value;
+        const base = this._baseChars.value;
         const select = JSON.parse(this._selectText.value) as Select;
         const toSelect = this.qinpel.talk.reg.aux.newToSelect(base, select);
         this.qinpel.talk.reg.ask(toSelect)
@@ -303,8 +303,8 @@ class AskREG extends QinColumn {
 
 class SetREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinChars();
-    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
+    private _baseChars = new QinChars();
+    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseChars]});
     private _updateText = new QinText();
     private _updateTitled = new QinTitled({label: new QinLabel("Update"), items: [this._updateText]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
@@ -323,7 +323,7 @@ class SetREG extends QinColumn {
     }
 
     private actRun() {
-        const base = this._baseString.value;
+        const base = this._baseChars.value;
         const update = JSON.parse(this._updateText.value) as Update;
         const toUpdate = this.qinpel.talk.reg.aux.newToUpdate(base, update);
         this.qinpel.talk.reg.set(toUpdate)
@@ -334,8 +334,8 @@ class SetREG extends QinColumn {
 
 class DelREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinChars();
-    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
+    private _baseChars = new QinChars();
+    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseChars]});
     private _deleteText = new QinText();
     private _deleteTitled = new QinTitled({label: new QinLabel("Delete"), items: [this._deleteText]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
@@ -354,7 +354,7 @@ class DelREG extends QinColumn {
     }
 
     private actRun() {
-        const base = this._baseString.value;
+        const base = this._baseChars.value;
         const delety = JSON.parse(this._deleteText.value) as Delete;
         const toDelete = this.qinpel.talk.reg.aux.newToDelete(base, delety);
         this.qinpel.talk.reg.del(toDelete)
@@ -402,14 +402,14 @@ class AuxREG extends QinColumn {
 
 class RegAuxTableHead extends QinColumn {
     private _newLine = new QinLine();
-    private _catalogString = new QinChars();
-    private _catalogTitled = new QinTitled({label: new QinLabel("Catalog"), items: [this._catalogString]});
-    private _schemaString = new QinChars();
-    private _schemaTitled = new QinTitled({label: new QinLabel("Schema"), items: [this._schemaString]});
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
-    private _aliasString = new QinChars();
-    private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasString]});
+    private _catalogChars = new QinChars();
+    private _catalogTitled = new QinTitled({label: new QinLabel("Catalog"), items: [this._catalogChars]});
+    private _schemaChars = new QinChars();
+    private _schemaTitled = new QinTitled({label: new QinLabel("Schema"), items: [this._schemaChars]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
+    private _aliasChars = new QinChars();
+    private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasChars]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});
 
@@ -430,10 +430,10 @@ class RegAuxTableHead extends QinColumn {
     private actNew() {
         const tableHead = this.qinpel.talk.reg.aux
                 .newTableHead(
-                    this._catalogString.value,
-                    this._schemaString.value,
-                    this._nameString.value,
-                    this._aliasString.value
+                    this._catalogChars.value,
+                    this._schemaChars.value,
+                    this._nameChars.value,
+                    this._aliasChars.value
                 );
         this._resultText.value = JSON.stringify(tableHead, null, 2);
     }
@@ -441,8 +441,8 @@ class RegAuxTableHead extends QinColumn {
 
 class RegAuxRegistry extends QinColumn {
     private _newLine = new QinLine();
-    private _baseString = new QinChars();
-    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
+    private _baseChars = new QinChars();
+    private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseChars]});
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
     private _newButton = new QinButton({label: new QinLabel("New")});
@@ -461,7 +461,7 @@ class RegAuxRegistry extends QinColumn {
     }
 
     private actNew() {
-        const base = this._baseString.value;
+        const base = this._baseChars.value;
         const tableHead = JSON.parse(this._tableHeadText.value) as TableHead;
         const registry = this.qinpel.talk.reg.aux.newRegistry(base, tableHead);
         this._resultText.value = JSON.stringify(registry, null, 2);
@@ -622,8 +622,8 @@ class RegAuxDelete extends QinColumn {
 
 class RegAuxToGetID extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
     private _filterText = new QinText();
     private _filterTitled = new QinTitled({label: new QinLabel("Filter: Valued"), items: [this._filterText]});
     private _newButton = new QinButton({label: new QinLabel("New")});
@@ -642,7 +642,7 @@ class RegAuxToGetID extends QinColumn {
     }
 
     private actNew() {
-        const name = this._nameString.value;
+        const name = this._nameChars.value;
         const filter = JSON.parse(this._filterText.value) as Valued;
         const join = this.qinpel.talk.reg.aux
                 .newToGetID(name, filter);
@@ -654,8 +654,8 @@ class RegAuxJoin extends QinColumn {
     private _newLine = new QinLine();
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
-    private _aliasString = new QinChars();
-    private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasString]});
+    private _aliasChars = new QinChars();
+    private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasChars]});
     private _filterListText = new QinText();
     private _filterListTitled = new QinTitled({label: new QinLabel("Filter List"), items: [this._filterListText]});
     private _tiesCombo = new QinCombo({ofEnum: JoinTies});
@@ -679,7 +679,7 @@ class RegAuxJoin extends QinColumn {
 
     private actNew() {
         const tableHead = JSON.parse(this._tableHeadText.value) as TableHead;
-        const alias = this._aliasString.value;
+        const alias = this._aliasChars.value;
         const filterList = JSON.parse(this._filterListText.value) as Array<Filter>;
         const ties = this._tiesCombo.value as JoinTies;  
         const join = this.qinpel.talk.reg.aux
@@ -732,10 +732,10 @@ class RegAuxFilter extends QinColumn {
 
 class RegAuxLinked extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
-    private _uponString = new QinChars();
-    private _uponTitled = new QinTitled({label: new QinLabel("Upon"), items: [this._uponString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
+    private _uponChars = new QinChars();
+    private _uponTitled = new QinTitled({label: new QinLabel("Upon"), items: [this._uponChars]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});
 
@@ -752,8 +752,8 @@ class RegAuxLinked extends QinColumn {
     }
 
     private actNew() {
-        const name = this._nameString.value;
-        const upon = this._uponString.value;
+        const name = this._nameChars.value;
+        const upon = this._uponChars.value;
         const linked = this.qinpel.talk.reg.aux
                 .newLinked(name, upon);
         this._resultText.value = JSON.stringify(linked, null, 2);
@@ -762,8 +762,8 @@ class RegAuxLinked extends QinColumn {
 
 class RegAuxOrder extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
     private _descBoolean = new QinBool();
     private _descTitled = new QinTitled({label: new QinLabel("Desc"), items: [this._descBoolean]});
     private _newButton = new QinButton({label: new QinLabel("New")});
@@ -782,7 +782,7 @@ class RegAuxOrder extends QinColumn {
     }
 
     private actNew() {
-        const name = this._nameString.value;
+        const name = this._nameChars.value;
         const desc = this._descBoolean.value;
         const order = this.qinpel.talk.reg.aux
                 .newOrder(name, desc);
@@ -792,12 +792,12 @@ class RegAuxOrder extends QinColumn {
 
 class RegAuxValued extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
     private _typeCombo = new QinCombo({ofEnum: Nature});
     private _typeTitled = new QinTitled({label: new QinLabel("Type"), items: [this._typeCombo]});
-    private _dataString = new QinChars();
-    private _dataTitled = new QinTitled({label: new QinLabel("Data"), items: [this._dataString]});
+    private _dataChars = new QinChars();
+    private _dataTitled = new QinTitled({label: new QinLabel("Data"), items: [this._dataChars]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});
 
@@ -815,9 +815,9 @@ class RegAuxValued extends QinColumn {
     }
 
     private actNew() {
-        const name = this._nameString.value;
+        const name = this._nameChars.value;
         const type = this._typeCombo.value as Nature;  
-        const data = this._dataString.value;
+        const data = this._dataChars.value;
         const valued = this.qinpel.talk.reg.aux
                 .newValued(name, type, data);
         this._resultText.value = JSON.stringify(valued, null, 2);
@@ -826,12 +826,12 @@ class RegAuxValued extends QinColumn {
 
 class RegAuxTyped extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
     private _typeCombo = new QinCombo({ofEnum: Nature});
     private _typeTitled = new QinTitled({label: new QinLabel("Type"), items: [this._typeCombo]});
-    private _aliasString = new QinChars();
-    private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasString]});
+    private _aliasChars = new QinChars();
+    private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasChars]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});
 
@@ -849,9 +849,9 @@ class RegAuxTyped extends QinColumn {
     }
 
     private actNew() {
-        const name = this._nameString.value;
+        const name = this._nameChars.value;
         const type = this._typeCombo.value as Nature;  
-        const alias = this._aliasString.value;
+        const alias = this._aliasChars.value;
         const typed = this.qinpel.talk.reg.aux
                 .newTyped(name, type, alias);
         this._resultText.value = JSON.stringify(typed, null, 2);

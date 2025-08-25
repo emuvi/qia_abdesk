@@ -40,8 +40,8 @@ class ListGIZ extends QinColumn {
 
 class RunGIZ extends QinColumn {
     private _actionLine = new QinLine();
-    private _nameString = new QinChars();
-    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
+    private _nameChars = new QinChars();
+    private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
     private _argsText = new QinText();
     private _argsTitled = new QinTitled({label: new QinLabel("Args"), items: [this._argsText]});
     private _inputText = new QinText();
@@ -70,7 +70,7 @@ class RunGIZ extends QinColumn {
 
     private getExecute(): Execute {
         return {
-            name: this._nameString.value,
+            name: this._nameChars.value,
             args: this._argsText.getLines(),
             input: this._inputText.getLines(),
             joinErrs: this._joinErrsBoolean.value,
