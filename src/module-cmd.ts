@@ -1,4 +1,4 @@
-import { QinBoolean, QinButton, QinColumn, QinCombo, QinLabel, QinLine, QinString, QinTabs, QinText, QinTitled } from "qin_case";
+import { QinBool, QinButton, QinColumn, QinCombo, QinLabel, QinLine, QinChars, QinTabs, QinText, QinTitled } from "qin_case";
 import { Module } from "./module";
 import { Execute } from "../../qin_soul/types/qin-type";
 
@@ -40,13 +40,13 @@ class ListCMD extends QinColumn {
 
 class RunCMD extends QinColumn {
     private _actionLine = new QinLine();
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _argsText = new QinText();
     private _argsTitled = new QinTitled({label: new QinLabel("Args"), items: [this._argsText]});
     private _inputText = new QinText();
     private _inputTitled = new QinTitled({label: new QinLabel("Input"), items: [this._inputText]});
-    private _joinErrsBoolean = new QinBoolean();
+    private _joinErrsBoolean = new QinBool();
     private _joinErrsTitled = new QinTitled({label: new QinLabel("Join Errors"), items: [this._joinErrsBoolean]});
     private _logLevelCombo = new QinCombo({items: [{title: "Error", value: "0"}, {title: "Warn", value: "1"}, {title: "Info", value: "2"}, {title: "Debug", value: "3"}, {title: "Trace", value: "4"}]});
     private _logLevelTitled = new QinTitled({label: new QinLabel("Log Level"), items: [this._logLevelCombo]});

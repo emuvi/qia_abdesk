@@ -1,10 +1,10 @@
-import { QinColumn, QinFileView, QinLine, QinString } from "qin_case";
+import { QinColumn, QinFileView, QinLine, QinChars } from "qin_case";
 import { Module } from "./module";
 
 export class ModuleDIR extends Module {
     private _bodyColumn = new QinColumn();
     private _actionLine = new QinLine();
-    private _pathString = new QinString();
+    private _pathString = new QinChars();
     private _fileView = new QinFileView({canNavigate: true});
     public constructor() {
         super();

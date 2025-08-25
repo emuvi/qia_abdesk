@@ -1,4 +1,4 @@
-import { QinBoolean, QinButton, QinColumn, QinCombo, QinLabel, QinLine, QinNumeric, QinString, QinTabs, QinText, QinTitled } from "qin_case";
+import { QinBool, QinButton, QinColumn, QinCombo, QinLabel, QinLine, QinNumeric, QinChars, QinTabs, QinText, QinTitled } from "qin_case";
 import { Module } from "./module";
 import { JoinTies, FilterSeems, FilterLikes, FilterTies, Nature } from "qin_soul"
 import { Delete, Filter, Insert, Join, Linked, Order, Select, Table, TableHead, ToGetID, Typed, Update, Valued } from "../../qin_soul/types/qin-type";
@@ -31,7 +31,7 @@ export class ModuleREG extends Module {
 
 class TopREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinString();
+    private _baseString = new QinChars();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _runButton = new QinButton({label: new QinLabel("Run")});
     private _resultText = new QinText({readOnly: true});
@@ -57,7 +57,7 @@ class TopREG extends QinColumn {
 
 class SeeREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinString();
+    private _baseString = new QinChars();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
@@ -210,7 +210,7 @@ class SeeREG extends QinColumn {
 
 class CanREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinString();
+    private _baseString = new QinChars();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
@@ -241,7 +241,7 @@ class CanREG extends QinColumn {
 
 class NewREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinString();
+    private _baseString = new QinChars();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _insertText = new QinText();
     private _insertTitled = new QinTitled({label: new QinLabel("Insert"), items: [this._insertText]});
@@ -272,7 +272,7 @@ class NewREG extends QinColumn {
 
 class AskREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinString();
+    private _baseString = new QinChars();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _selectText = new QinText();
     private _selectTitled = new QinTitled({label: new QinLabel("Select"), items: [this._selectText]});
@@ -303,7 +303,7 @@ class AskREG extends QinColumn {
 
 class SetREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinString();
+    private _baseString = new QinChars();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _updateText = new QinText();
     private _updateTitled = new QinTitled({label: new QinLabel("Update"), items: [this._updateText]});
@@ -334,7 +334,7 @@ class SetREG extends QinColumn {
 
 class DelREG extends QinColumn {
     private _actLine = new QinLine();
-    private _baseString = new QinString();
+    private _baseString = new QinChars();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _deleteText = new QinText();
     private _deleteTitled = new QinTitled({label: new QinLabel("Delete"), items: [this._deleteText]});
@@ -402,13 +402,13 @@ class AuxREG extends QinColumn {
 
 class RegAuxTableHead extends QinColumn {
     private _newLine = new QinLine();
-    private _catalogString = new QinString();
+    private _catalogString = new QinChars();
     private _catalogTitled = new QinTitled({label: new QinLabel("Catalog"), items: [this._catalogString]});
-    private _schemaString = new QinString();
+    private _schemaString = new QinChars();
     private _schemaTitled = new QinTitled({label: new QinLabel("Schema"), items: [this._schemaString]});
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
-    private _aliasString = new QinString();
+    private _aliasString = new QinChars();
     private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasString]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});
@@ -441,7 +441,7 @@ class RegAuxTableHead extends QinColumn {
 
 class RegAuxRegistry extends QinColumn {
     private _newLine = new QinLine();
-    private _baseString = new QinString();
+    private _baseString = new QinChars();
     private _baseTitled = new QinTitled({label: new QinLabel("Base"), items: [this._baseString]});
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
@@ -622,7 +622,7 @@ class RegAuxDelete extends QinColumn {
 
 class RegAuxToGetID extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _filterText = new QinText();
     private _filterTitled = new QinTitled({label: new QinLabel("Filter: Valued"), items: [this._filterText]});
@@ -654,7 +654,7 @@ class RegAuxJoin extends QinColumn {
     private _newLine = new QinLine();
     private _tableHeadText = new QinText();
     private _tableHeadTitled = new QinTitled({label: new QinLabel("Table Head"), items: [this._tableHeadText]});
-    private _aliasString = new QinString();
+    private _aliasString = new QinChars();
     private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasString]});
     private _filterListText = new QinText();
     private _filterListTitled = new QinTitled({label: new QinLabel("Filter List"), items: [this._filterListText]});
@@ -732,9 +732,9 @@ class RegAuxFilter extends QinColumn {
 
 class RegAuxLinked extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
-    private _uponString = new QinString();
+    private _uponString = new QinChars();
     private _uponTitled = new QinTitled({label: new QinLabel("Upon"), items: [this._uponString]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});
@@ -762,9 +762,9 @@ class RegAuxLinked extends QinColumn {
 
 class RegAuxOrder extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
-    private _descBoolean = new QinBoolean();
+    private _descBoolean = new QinBool();
     private _descTitled = new QinTitled({label: new QinLabel("Desc"), items: [this._descBoolean]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});
@@ -792,11 +792,11 @@ class RegAuxOrder extends QinColumn {
 
 class RegAuxValued extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _typeCombo = new QinCombo({ofEnum: Nature});
     private _typeTitled = new QinTitled({label: new QinLabel("Type"), items: [this._typeCombo]});
-    private _dataString = new QinString();
+    private _dataString = new QinChars();
     private _dataTitled = new QinTitled({label: new QinLabel("Data"), items: [this._dataString]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});
@@ -826,11 +826,11 @@ class RegAuxValued extends QinColumn {
 
 class RegAuxTyped extends QinColumn {
     private _newLine = new QinLine();
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _typeCombo = new QinCombo({ofEnum: Nature});
     private _typeTitled = new QinTitled({label: new QinLabel("Type"), items: [this._typeCombo]});
-    private _aliasString = new QinString();
+    private _aliasString = new QinChars();
     private _aliasTitled = new QinTitled({label: new QinLabel("Alias"), items: [this._aliasString]});
     private _newButton = new QinButton({label: new QinLabel("New")});
     private _resultText = new QinText({readOnly: true});

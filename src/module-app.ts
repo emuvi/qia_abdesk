@@ -1,4 +1,4 @@
-import { QinButton, QinColumn, QinLabel, QinLine, QinString, QinTabs, QinText, QinTitled } from "qin_case";
+import { QinButton, QinColumn, QinLabel, QinLine, QinChars, QinTabs, QinText, QinTitled } from "qin_case";
 import { Module } from "./module";
 
 export class ModuleAPP extends Module {
@@ -41,7 +41,7 @@ class ListAPP extends QinColumn {
 
 class ManifestAPP extends QinColumn {
     private _actionLine = new QinLine();
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _manifestButton = new QinButton({label: new QinLabel("Manifest")});
     private _resultText = new QinText();
@@ -65,9 +65,9 @@ class ManifestAPP extends QinColumn {
 }
 
 class AssetAPP extends QinColumn {
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
-    private _assetString = new QinString();
+    private _assetString = new QinChars();
     private _assetTitled = new QinTitled({label: new QinLabel("Asset"), items: [this._assetString]});
     private _assetButton = new QinButton({label: new QinLabel("Asset")});
     private _actionLine = new QinLine();

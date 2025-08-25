@@ -1,4 +1,4 @@
-import { QinBoolean, QinButton, QinColumn, QinLabel, QinLine, QinNumeric, QinPassword, QinString, QinTabs, QinText, QinTitled } from "qin_case";
+import { QinBool, QinButton, QinColumn, QinLabel, QinLine, QinNumeric, QinPassword, QinChars, QinTabs, QinText, QinTitled } from "qin_case";
 import { Module } from "./module";
 import { IssuedQuestion, TryAuth } from "qin_soul";
 
@@ -23,7 +23,7 @@ class BasicUTL extends QinColumn {
     private _pingButton = new QinButton({label: new QinLabel("Ping")});
     private _langButton = new QinButton({label: new QinLabel("Lang")});
     private _configLine = new QinLine();
-    private _configString = new QinString();
+    private _configString = new QinChars();
     private _configTitled = new QinTitled({label: new QinLabel("Config"), items: [this._configString]});
     private _configButton = new QinButton({label: new QinLabel("Get")});
     private _resultText = new QinText();
@@ -68,7 +68,7 @@ class BasicUTL extends QinColumn {
 
 class EnterUTL extends QinColumn {
     private _enterLine = new QinLine();
-    private _nameString = new QinString();
+    private _nameString = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameString]});
     private _passPassword = new QinPassword();
     private _passTitled = new QinTitled({label: new QinLabel("Pass"), items: [this._passPassword]});
@@ -123,35 +123,35 @@ class EnterUTL extends QinColumn {
 
 class IssuedUTL extends QinColumn {
     private _questionLine = new QinLine();
-    private _tokenString = new QinString();
+    private _tokenString = new QinChars();
     private _tokenTitled = new QinTitled({label: new QinLabel("Token"), items: [this._tokenString]});
-    private _createdAtBoolean = new QinBoolean();
+    private _createdAtBoolean = new QinBool();
     private _createdAtTitled = new QinTitled({label: new QinLabel("Created At"), items: [this._createdAtBoolean]});
-    private _outLinesBoolean = new QinBoolean();
+    private _outLinesBoolean = new QinBool();
     private _outLinesTitled = new QinTitled({label: new QinLabel("Out Lines"), items: [this._outLinesBoolean]});
     private _outLinesFromNumber = new QinNumeric();
     private _outLinesFromTitled = new QinTitled({label: new QinLabel("Out Lines From"), items: [this._outLinesFromNumber]});
     private _outLinesUntilNumber = new QinNumeric();
     private _outLinesUntilTitled = new QinTitled({label: new QinLabel("Out Lines Until"), items: [this._outLinesUntilNumber]});
-    private _outLinesSizeBoolean = new QinBoolean();
+    private _outLinesSizeBoolean = new QinBool();
     private _outLinesSizeTitled = new QinTitled({label: new QinLabel("Out Lines Size"), items: [this._outLinesSizeBoolean]});
-    private _errLinesBoolean = new QinBoolean();
+    private _errLinesBoolean = new QinBool();
     private _errLinesTitled = new QinTitled({label: new QinLabel("Err Lines"), items: [this._errLinesBoolean]});
     private _errLinesFromNumber = new QinNumeric();
     private _errLinesFromTitled = new QinTitled({label: new QinLabel("Err Lines From"), items: [this._errLinesFromNumber]});
     private _errLinesUntilNumber = new QinNumeric();
     private _errLinesUntilTitled = new QinTitled({label: new QinLabel("Err Lines Until"), items: [this._errLinesUntilNumber]});
-    private _errLinesSizeBoolean = new QinBoolean();
+    private _errLinesSizeBoolean = new QinBool();
     private _errLinesSizeTitled = new QinTitled({label: new QinLabel("Err Lines Size"), items: [this._errLinesSizeBoolean]});
-    private _resultCodeBoolean = new QinBoolean();
+    private _resultCodeBoolean = new QinBool();
     private _resultCodeTitled = new QinTitled({label: new QinLabel("Result Code"), items: [this._resultCodeBoolean]});
-    private _isDoneBoolean = new QinBoolean();
+    private _isDoneBoolean = new QinBool();
     private _isDoneTitled = new QinTitled({label: new QinLabel("Is Done"), items: [this._isDoneBoolean]});
-    private _hasOutBoolean = new QinBoolean();
+    private _hasOutBoolean = new QinBool();
     private _hasOutTitled = new QinTitled({label: new QinLabel("Has Out"), items: [this._hasOutBoolean]});
-    private _hasErrBoolean = new QinBoolean();
+    private _hasErrBoolean = new QinBool();
     private _hasErrTitled = new QinTitled({label: new QinLabel("Has Err"), items: [this._hasErrBoolean]});
-    private _finishedAtBoolean = new QinBoolean();
+    private _finishedAtBoolean = new QinBool();
     private _finishedAtTitled = new QinTitled({label: new QinLabel("Finished At"), items: [this._finishedAtBoolean]});
     private _askButton = new QinButton({label: new QinLabel("Ask")});
     private _resultText = new QinText();
