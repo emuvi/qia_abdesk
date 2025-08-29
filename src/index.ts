@@ -1,4 +1,4 @@
-import { Qine, QinScroll } from "qin_case";
+import { Qine, QinPanel } from "qin_case";
 import { Modules } from "./consts";
 import { Menu } from "./menu";
 import { ModuleAPP } from "./module-app";
@@ -12,7 +12,7 @@ import { ModuleWAY } from "./module-way";
 
 const qinFrame = Qine.qinpel.frame;
 
-class AbDesk extends QinScroll {
+class AbDesk extends QinPanel {
     public constructor() {
         super();
         if (!qinFrame.hasOption("Module")) {
