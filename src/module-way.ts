@@ -18,8 +18,7 @@ class SetupWAY extends QinColumn {
     
     private _getButton = new QinButton({label: new QinLabel('Get')});
     private _setButton = new QinButton({label: new QinLabel('Set')});
-    private _testButton = new QinButton({label: new QinLabel('Test')});
-    private _actionLine = new QinLine({items: [this._getButton, this._setButton, this._testButton]});
+    private _actionLine = new QinLine({items: [this._getButton, this._setButton]});
 
     private _serverNameChars = new QinChars();
     private _serverNameTitled = new QinTitled({label: new QinLabel('Server Name'), items: [this._serverNameChars]});
