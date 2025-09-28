@@ -71,8 +71,8 @@ class RunGIZ extends QinColumn {
     private getExecute(): Execute {
         return {
             name: this._nameChars.value,
-            args: this._argsText.getLines(),
-            input: this._inputText.getLines(),
+            argList: this._argsText.getLines(),
+            inputList: this._inputText.getLines(),
             joinErrs: this._joinErrsBoolean.value,
             logLevel: parseInt(this._logLevelCombo.value, 10)
         };
@@ -84,4 +84,5 @@ class RunGIZ extends QinColumn {
             .then((token) => this._resultText.appendLine(token + "\n" + JSON.stringify(execute)))
             .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000006)"))
     }
+
 }

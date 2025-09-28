@@ -3,6 +3,7 @@ import { Module } from "./module";
 import { Execute } from "../../qin_soul/types/qin-type";
 
 export class ModuleCMD extends Module {
+    
     private _bodyTabs = new QinTabs();
     private _listCMD = new ListCMD();
     private _runCMD = new RunCMD();
@@ -14,9 +15,11 @@ export class ModuleCMD extends Module {
         this._bodyTabs.addTab({title: "Run", viewer: this._runCMD});
         this._bodyTabs.install(this);
     }
+
 }
 
 class ListCMD extends QinColumn {
+    
     private _actionLine = new QinLine();
     private _listButton = new QinButton({label: new QinLabel("List")});
     private _resultText = new QinText();
@@ -33,12 +36,14 @@ class ListCMD extends QinColumn {
 
     private actList() {
         this.qinpel.talk.cmd.list()
-            .then((res) => this._resultText.value = res.join("\n"))
-            .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000003)"))
+                .then((res) => this._resultText.value = res.join("\n"))
+                .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000003)"))
     }
+
 }
 
 class RunCMD extends QinColumn {
+    
     private _actionLine = new QinLine();
     private _nameChars = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
@@ -71,8 +76,8 @@ class RunCMD extends QinColumn {
     private getExecute(): Execute {
         return {
             name: this._nameChars.value,
-            args: this._argsText.getLines(),
-            input: this._inputText.getLines(),
+            argList: this._argsText.getLines(),
+            inputList: this._inputText.getLines(),
             joinErrs: this._joinErrsBoolean.value,
             logLevel: parseInt(this._logLevelCombo.value, 10)
         };
@@ -81,7 +86,8 @@ class RunCMD extends QinColumn {
     private actRun() {
         const execute = this.getExecute();
         this.qinpel.talk.cmd.run(execute)
-            .then((token) => this._resultText.appendLine(token + "\n" + JSON.stringify(execute)))
-            .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000004)"))
+                .then((token) => this._resultText.appendLine(token + "\n" + JSON.stringify(execute)))
+                .catch((err) => this.qinpel.frame.showError(err, "{qia_abdesk}(ErrCode-000004)"))
     }
+
 }

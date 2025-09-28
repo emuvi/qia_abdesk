@@ -3,6 +3,7 @@ import { Module } from "./module";
 import { IssuedQuestion, TryAuth } from "qin_soul";
 
 export class ModuleUTL extends Module {
+    
     private _bodyTabs = new QinTabs();
     private _basicUTL = new BasicUTL();
     private _enterUTL = new EnterUTL();

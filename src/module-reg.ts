@@ -170,7 +170,7 @@ class SeeREG extends QinColumn {
                 const valued = this.qinpel.talk.reg.aux
                         .newValued(field.name, field.nature, null);
                 const filter = this.qinpel.talk.reg.aux
-                       .newFilter(FilterSeems.IS, FilterLikes.EQUALS, valued, null, FilterTies.AND);
+                       .newFilter(FilterSeems.Is, FilterLikes.Equals, valued, null, FilterTies.And);
                 result.push(filter);
             }
         }
@@ -185,11 +185,11 @@ class SeeREG extends QinColumn {
                 const linked = this.qinpel.talk.reg.aux
                         .newLinked(match.inColumn, match.outColumn);
                 const filter = this.qinpel.talk.reg.aux
-                        .newFilter(FilterSeems.IS, FilterLikes.EQUALS, null, linked, FilterTies.AND);
+                        .newFilter(FilterSeems.Is, FilterLikes.Equals, null, linked, FilterTies.And);
                 filterList.push(filter);
             }
             const join = this.qinpel.talk.reg.aux
-                    .newJoin(foreign.outTableHead, null, filterList, JoinTies.LEFT);
+                    .newJoin(foreign.outTableHead, null, filterList, JoinTies.Left);
             result.push(join);
         }
         return result;
