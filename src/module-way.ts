@@ -1,4 +1,4 @@
-import { QinBool, QinButton, QinChars, QinColumn, QinCombo, QinDouble, QinEdit, QinInt, QinLabel, QinLine, QinList, QinMap, QinPassword, QinSizer, QinTabs, QinTitled } from "qin_case";
+import { QinBool, QinButton, QinChars, QinColumn, QinCombo, QinDouble, QinEdit, QinInt, QinLabel, QinLine, QinList, QinMap, QinSizer, QinTabs, QinTitled } from "qin_case";
 import { Allow, Based, BasedJdbc, BasedLink, BasedWays, Group, Nature, Setup, User } from "qin_soul";
 import { Module } from "./module";
 
@@ -288,7 +288,7 @@ class BasedJdbcTab extends QinLine {
     public _urlTitled = new QinTitled({label: new QinLabel("Url"), items: [this._urlChars]});
     public _userChars = new QinChars();
     public _userTitled = new QinTitled({label: new QinLabel("User"), items: [this._userChars]});
-    public _passWord = new QinPassword();
+    public _passWord = new QinChars();
     public _passTitled = new QinTitled({label: new QinLabel("Pass"), items: [this._passWord]});
 
     public constructor() {
@@ -338,7 +338,7 @@ class BasedLinkTab extends QinLine {
     public _dataTitled = new QinTitled({label: new QinLabel("Data"), items: [this._dataChars]});
     public _userChars = new QinChars();
     public _userTitled = new QinTitled({label: new QinLabel("User"), items: [this._userChars]});
-    public _passWord = new QinPassword();
+    public _passWord = new QinChars();
     public _passTitled = new QinTitled({label: new QinLabel("Pass"), items: [this._passWord]});
 
     public constructor() {
@@ -427,7 +427,7 @@ class EditUser extends QinEdit<User> {
     
     private _nameChars = new QinChars();
     private _nameTitled = new QinTitled({label: new QinLabel("Name"), items: [this._nameChars]});
-    private _passChars = new QinPassword();
+    private _passChars = new QinChars();
     private _passTitled = new QinTitled({label: new QinLabel("Pass"), items: [this._passChars]});
     private _homeChars = new QinChars();
     private _homeTitled = new QinTitled({label: new QinLabel("Home"), items: [this._homeChars]});

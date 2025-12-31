@@ -1,6 +1,6 @@
-import { QinBool, QinButton, QinColumn, QinLabel, QinLine, QinNumeric, QinPassword, QinChars, QinTabs, QinText, QinTitled } from "qin_case";
-import { Module } from "./module";
+import { QinBool, QinButton, QinChars, QinColumn, QinLabel, QinLine, QinNumeric, QinPassword, QinTabs, QinText, QinTitled } from "qin_case";
 import { IssuedQuestion, TryAuth } from "qin_soul";
+import { Module } from "./module";
 
 export class ModuleUTL extends Module {
     
