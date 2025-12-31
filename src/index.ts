@@ -9,6 +9,7 @@ import { ModuleGIZ } from "./module-giz";
 import { ModuleREG } from "./module-reg";
 import { ModuleUTL } from "./module-utl";
 import { ModuleWAY } from "./module-way";
+import { ModuleTST } from "./module-tst";
 
 const qinFrame = Qine.qinpel.frame;
 
@@ -27,6 +28,7 @@ class AbDesk extends QinPanel {
                 case Modules.REG: new ModuleREG().install(this); break;
                 case Modules.UTL: new ModuleUTL().install(this); break;
                 case Modules.WAY: new ModuleWAY().install(this); break;
+                case Modules.TST: new ModuleTST().install(this); break;
             }
         }
     }

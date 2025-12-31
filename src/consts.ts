@@ -7,5 +7,6 @@ export enum Modules {
     GIZ = "GIZ",
     REG = "REG",
     UTL = "UTL",
-    WAY = "WAY"
+    WAY = "WAY",
+    TST = "TST",
 }
